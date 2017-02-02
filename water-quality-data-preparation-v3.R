@@ -2,16 +2,11 @@
 library(cluster)
 water.quality1$Quality.Parameter<-as.character(water.quality1$Quality.Parameter)
 water.quality1$Village.Name<-as.character(paste(water.quality1$Village.Name, water.quality1$Year, sep = "-"))
-water.quality1["Arsenic"]<-0
 water.quality1["Arsenic"]<- 0
 water.quality1["Arsenic"]<-as.numeric(grepl("Arsenic",water.quality1$Quality.Parameter))
-water.quality1["Fluoride"]<-0
 water.quality1["Fluoride"]<-as.numeric(grepl("Fluoride",water.quality1$Quality.Parameter))
-water.quality1["Iron"]<-0
 water.quality1["Iron"]<-as.numeric(grepl("Iron",water.quality1$Quality.Parameter))
-water.quality1["Nitrate"]<-0
 water.quality1["Nitrate"]<-as.numeric(grepl("Nitrate",water.quality1$Quality.Parameter))
-water.quality1["Salinity"]<-0
 water.quality1["Salinity"]<-as.numeric(grepl("Salinity",water.quality1$Quality.Parameter))
 by1 = c("State.Name", "District.Name",   "Block.Name",      "Panchayat.Name",  "Village.Name","Habitation.Name","Year")
 wqArsenic <- aggregate(Arsenic ~ State.Name + 
