@@ -64,3 +64,4 @@ water.quality1$Quality.Parameter = as.character(water.quality1$Quality.Parameter
 # my_palette <- colorRampPalette(c("pink","blue" ))(256)
 # #Define custom dist and hclust functions for use with heatmaps
 # mydist=function(c) {dist(c,method="euclidean")}
+# myclust=function(c) {hclust(c,method="average")}
