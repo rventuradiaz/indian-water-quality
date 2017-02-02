@@ -1,7 +1,7 @@
 # This script is sourced in qlikview integration
 library(cluster)
 water.quality1$Quality.Parameter <- as.character(water.quality1$Quality.Parameter)
-
+water.quality1$Year <- as.character(water.quality1$Year)
 water.quality1$Village.Name<- as.character(paste(water.quality1$Village.Name, water.quality1$Year, sep = "-"))
 water.quality1["Arsenic"]<- 0
 water.quality1["Arsenic"]<- as.numeric(grepl("Arsenic",water.quality1$Quality.Parameter))
