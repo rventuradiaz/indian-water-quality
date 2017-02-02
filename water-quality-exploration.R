@@ -13,10 +13,10 @@ source_url("https://raw.githubusercontent.com/obigriffith/biostar-tutorials/mast
 
         # Use color brewer
         library(RColorBrewer)
-        main_title=paste("W. quality for State",fpns,sep = " ")
+        main_title="W. quality for State"
         par(cex.main=1)
         # windows() ## create window to plot your file
-        pdf(file = paste("Rplots_",as.character(i),".pdf", sep = ""))        
+        pdf(file = paste("Rplots_01",".pdf", sep = ""))        
         heatmap.3(x = tab_ready,               # specify the (scaled) data to be used in the heatmap
                   hclustfun=myclust, 
                   distfun=mydist,
