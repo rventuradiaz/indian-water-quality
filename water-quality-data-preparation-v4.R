@@ -1,7 +1,6 @@
 # This script is sourced in qlikview integration
 # Prepare data for plotting heatmap using image function
 prepare_data <- function(wq1){
-  wq1 <- water.quality1
   require(devtools)
   require(cluster)
   wq1$QualityParameter = as.character(wq1$QualityParameter)
