@@ -53,13 +53,8 @@ wqSalinity <- aggregate(Salinity ~ StateName +
                          VillageName +
                          HabitationName +
                          Year, data=water.quality1, sum )
-WqAll <- aggregate(Arsenic+Flouride+Iron+Nitrate+Salinity ~ StateName +
-                     DistrictName +
-                     BlockName +
-                     PanchayatName +
-                     VillageName +
-                     HabitationName +
-                     Year, data=water.quality1, sum )
+WqAll <- aggregate(formula=Arsenic+Flouride+Iron+Nitrate+Salinity~StateName+DistrictName+BlockName+PanchayatName+VillageName+HabitationName+Year, 
+                   data=water.quality1, sum )
 wq1s <- merge(wqArsenic, wqFlouride)
 wq1s <- merge(wq1s, wqIron)
 wq1s <- merge(wq1s, wqNitrate)
