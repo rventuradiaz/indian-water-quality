@@ -1,6 +1,7 @@
 # This script is sourced in qlikview integration
 # Prepare data for plotting heatmap using image function
 prepare_data <- function(wq1){
+  wq1 <- water.quality1
   require(devtools)
   require(cluster)
   wq1$QualityParameter = as.character(wq1$QualityParameter)
@@ -53,13 +54,11 @@ wqSalinity <- aggregate(Salinity ~ StateName +
                          VillageName +
                          HabitationName +
                          Year, data=wq1, sum )
-WqAll <- aggregate(formula=Arsenic+Flouride+Iron+Nitrate+Salinity~StateName+DistrictName+BlockName+PanchayatName+VillageName+HabitationName+Year, 
-                   data=wq1, sum )
 wq1s <- merge(wqArsenic, wqFlouride)
 wq1s <- merge(wq1s, wqIron)
 wq1s <- merge(wq1s, wqNitrate)
 wq1s <- merge(wq1s, wqSalinity)
-wq1s <- merge(wq1s, WqAll)
+wq1s["All"] <- wq1s[,8]+wq1s[,9]++wq1s[,10] +wq1s[,11] +wq1s[,12]  
 wq1s <- wq1s[order(wq1s[,4], wq1s[,1], wq1s[2],  wq1s[3]), ]
 tab_ready <- as.matrix(wq1s[,c(13)], ncol=5 )
 class(tab_ready )<-"numeric"
