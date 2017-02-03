@@ -1,21 +1,21 @@
 # This script is sourced in qlikview integration
 # Prepare data for plotting heatmap using image function
-prepare_data <- function(water.quality1){
+prepare_data <- function(wq1){
   require(devtools)
   require(cluster)
-  water.quality1$QualityParameter = as.character(water.quality1$QualityParameter)
-  water.quality1$Year <- as.character(water.quality1$Year)
-  water.quality1$VillageName<- as.character(paste(water.quality1$VillageName, water.quality1$Year, sep = "-"))
-  water.quality1["Arsenic"] <- 0
-  water.quality1["Arsenic"] <- as.numeric(grepl("Arsenic",water.quality1$QualityParameter))*1
-  water.quality1["Fluoride"] <- 0
-  water.quality1["Fluoride"] <- as.numeric(grepl("Fluoride",water.quality1$QualityParameter))*2
-  water.quality1["Iron"] <- 0
-  water.quality1["Iron"] <- as.numeric(grepl("Iron",water.quality1$QualityParameter))*3
-  water.quality1["Nitrate"] <- 0
-  water.quality1["Nitrate"] <- as.numeric(grepl("Nitrate",water.quality1$QualityParameter))*4
-  water.quality1["Salinity"] <- 0
-  water.quality1["Salinity"] <- as.numeric(grepl("Salinity",water.quality1$QualityParameter))*5
+  wq1$QualityParameter = as.character(wq1$QualityParameter)
+  wq1$Year <- as.character(wq1$Year)
+  wq1$VillageName<- as.character(paste(wq1$VillageName, wq1$Year, sep = "-"))
+  wq1["Arsenic"] <- 0
+  wq1["Arsenic"] <- as.numeric(grepl("Arsenic",wq1$QualityParameter))*1
+  wq1["Fluoride"] <- 0
+  wq1["Fluoride"] <- as.numeric(grepl("Fluoride",wq1$QualityParameter))*2
+  wq1["Iron"] <- 0
+  wq1["Iron"] <- as.numeric(grepl("Iron",wq1$QualityParameter))*3
+  wq1["Nitrate"] <- 0
+  wq1["Nitrate"] <- as.numeric(grepl("Nitrate",wq1$QualityParameter))*4
+  wq1["Salinity"] <- 0
+  wq1["Salinity"] <- as.numeric(grepl("Salinity",wq1$QualityParameter))*5
 wqArsenic <- aggregate(Arsenic ~ StateName +
                          DistrictName +
                          BlockName +
@@ -23,7 +23,7 @@ wqArsenic <- aggregate(Arsenic ~ StateName +
                          VillageName +
                          HabitationName +
                          Year,
-                       data= water.quality1, sum )
+                       data= wq1, sum )
 wqFlouride <- aggregate(Fluoride ~ StateName +
                           DistrictName +
                           BlockName +
@@ -31,30 +31,30 @@ wqFlouride <- aggregate(Fluoride ~ StateName +
                           VillageName +
                           HabitationName +
                           Year,
-                        data = water.quality1, sum )
+                        data = wq1, sum )
 wqIron <- aggregate(Iron ~ StateName +
                           DistrictName +
                           BlockName +
                           PanchayatName +
                           VillageName +
                           HabitationName +
-                          Year, data=water.quality1, sum )
+                          Year, data=wq1, sum )
 wqNitrate <- aggregate(Nitrate ~ StateName +
                       DistrictName +
                       BlockName +
                       PanchayatName +
                       VillageName +
                       HabitationName +
-                      Year, data=water.quality1, sum )
+                      Year, data=wq1, sum )
 wqSalinity <- aggregate(Salinity ~ StateName +
                          DistrictName +
                          BlockName +
                          PanchayatName +
                          VillageName +
                          HabitationName +
-                         Year, data=water.quality1, sum )
+                         Year, data=wq1, sum )
 WqAll <- aggregate(formula=Arsenic+Flouride+Iron+Nitrate+Salinity~StateName+DistrictName+BlockName+PanchayatName+VillageName+HabitationName+Year, 
-                   data=water.quality1, sum )
+                   data=wq1, sum )
 wq1s <- merge(wqArsenic, wqFlouride)
 wq1s <- merge(wq1s, wqIron)
 wq1s <- merge(wq1s, wqNitrate)
