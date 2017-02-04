@@ -57,7 +57,7 @@ wq1s <- merge(wqArsenic, wqFlouride)
 wq1s <- merge(wq1s, wqIron)
 wq1s <- merge(wq1s, wqNitrate)
 wq1s <- merge(wq1s, wqSalinity)
-Wq1s<- merge(wq1s, wq1)
+wq1s<- merge(wq1s, wq1)
 wq1s["All"] <- wq1s[,8]+wq1s[,9]++wq1s[,10] +wq1s[,11] +wq1s[,12]  
 wq1s <- wq1s[order(wq1s[,4], wq1s[,1], wq1s[2],  wq1s[3]), ]
 tab_ready <- as.matrix(wq1s[,c(13)], ncol=5 )
@@ -126,7 +126,7 @@ wq1_df <- function(wq1){
   wq1s <- merge(wq1s, wqIron)
   wq1s <- merge(wq1s, wqNitrate)
   wq1s <- merge(wq1s, wqSalinity)
-  Wq1s<- merge(wq1s, wq1)
+  wq1s<- merge(wq1s, wq1)
   wq1s["AllPolutants"] <- wq1s[,8]+wq1s[,9]++wq1s[,10] +wq1s[,11] +wq1s[,12]  
   wq1s <- wq1s[order(wq1s[,4], wq1s[,1], wq1s[2],  wq1s[3]), ]
   return(wq1s)
