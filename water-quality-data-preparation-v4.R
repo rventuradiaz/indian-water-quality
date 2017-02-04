@@ -73,7 +73,7 @@ wq1_df <- function(wq1){
   require(cluster)
   wq1$QualityParameter = as.character(wq1$QualityParameter)
   wq1$Year <- as.character(wq1$Year)
-  wq1$VillageName<- as.character(paste(wq1$VillageName, wq1$Year, sep = "-"))
+  wq1$VillageName<- as.character(wq1$VillageName)
   wq1["Arsenic"] <- 0
   wq1["Arsenic"] <- as.numeric(grepl("Arsenic",wq1$QualityParameter))*1
   wq1["Fluoride"] <- 0
