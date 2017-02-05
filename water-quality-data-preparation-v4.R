@@ -70,8 +70,6 @@ return(tab_ready)
 }
 
 wq1_df <- function(wq1){
-  require(devtools)
-  require(cluster)
   wq1$QualityParameter = as.character(wq1$QualityParameter)
   wq1$Year <- as.character(wq1$Year)
   wq1$VillageName<- as.character(wq1$VillageName)
