@@ -94,5 +94,10 @@ draw_hm <- function(data,
                     facetInput, 
                     fill_discrete="QualityParameter"){
   library(ggplot2)
-  ggplot(data, aes(x, y))+geom_raster(aes(fill = fillInput))+labs(title ="Heat Map", x = "Year", y = "Quality Parameter", cey=0.8)+scale_fill_discrete(name = fill_discrete)+facet_grid(facets = facetInput)
+  ggplot(data, aes(x, y))+
+    geom_raster(aes(fill = fillInput))+
+    labs(title ="Heat Map", x = "Year", y = "Quality Parameter", cey=0.8)+
+    scale_fill_discrete(name = fill_discrete)+
+    facet_grid(facets = facetInput)+
+    theme(axis.text.x = element_text(angle = 90, hjust = 1))
 }
