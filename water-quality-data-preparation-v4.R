@@ -88,8 +88,9 @@ wq1_df <- function(wq1){
 }
 
 draw_hm <- function(data, x, y, fill=data$QualityParameter, facet=data$BlockName, fill_discrete="QualityParameter") {
+  library(ggplot2)
   ggplot(data, aes(x, y))+
     geom_raster(aes(fill = fill))+
-    labs(title ="Heat Map", x = names(x), y = names(y), cey=0.8)+
+    labs(title ="Heat Map", x = "Year", y = "Quality Parameter", cey=0.8)+
     scale_fill_discrete(name = fill_discrete)+
     facet_grid(facets =  . ~ facet)
