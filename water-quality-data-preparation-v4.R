@@ -83,49 +83,13 @@ wq1_df <- function(wq1){
   wq1["Nitrate"] <- as.numeric(grepl("Nitrate",wq1$QualityParameter))*4
   wq1["Salinity"] <- 0
   wq1["Salinity"] <- as.numeric(grepl("Salinity",wq1$QualityParameter))*5
-  wqArsenic <- aggregate(Arsenic ~ StateName +
-                           DistrictName +
-                           BlockName +
-                           PanchayatName +
-                           VillageName +
-                           HabitationName +
-                           Year,
-                         data= wq1, sum )
-  wqFlouride <- aggregate(Fluoride ~ StateName +
-                            DistrictName +
-                            BlockName +
-                            PanchayatName +
-                            VillageName +
-                            HabitationName +
-                            Year,
-                          data = wq1, sum )
-  wqIron <- aggregate(Iron ~ StateName +
-                        DistrictName +
-                        BlockName +
-                        PanchayatName +
-                        VillageName +
-                        HabitationName +
-                        Year, data=wq1, sum )
-  wqNitrate <- aggregate(Nitrate ~ StateName +
-                           DistrictName +
-                           BlockName +
-                           PanchayatName +
-                           VillageName +
-                           HabitationName +
-                           Year, data=wq1, sum )
-  wqSalinity <- aggregate(Salinity ~ StateName +
-                            DistrictName +
-                            BlockName +
-                            PanchayatName +
-                            VillageName +
-                            HabitationName +
-                            Year, data=wq1, sum )
-  wq1s <- merge(wqArsenic, wqFlouride)
-  wq1s <- merge(wq1s, wqIron)
-  wq1s <- merge(wq1s, wqNitrate)
-  wq1s <- merge(wq1s, wqSalinity)
-  wq1s<- merge(wq1s, wq1)
-  wq1s["AllPolutants"] <- wq1s[,8]+wq1s[,9]++wq1s[,10] +wq1s[,11] +wq1s[,12]  
-  wq1s <- wq1s[order(wq1s[,4], wq1s[,1], wq1s[2],  wq1s[3]), ]
-  return(wq1s)
+  wq1 <- wq1[order(wq1[,4], wq1[,1], wq1[2],  wq1[3]), ]
+  return(wq1)
 }
+
+draw_hm <- function(data, x, y, fill=data$QualityParameter, facet=data$BlockName, fill_discrete="QualityParameter") {
+  ggplot(data, aes(x, y))+
+    geom_raster(aes(fill = fill))+
+    labs(title ="Heat Map", x = names(x), y = names(y), cey=0.8)+
+    scale_fill_discrete(name = fill_discrete)+
+    facet_grid(facets =  . ~ facet)
